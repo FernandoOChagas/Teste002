@@ -13,4 +13,4 @@ begin end;
 procedure TMinhaClasse.setMinhaVar(value : String);
 begin end;
 
-1,2
+1,2,3
