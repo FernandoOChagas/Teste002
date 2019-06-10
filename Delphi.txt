@@ -12,3 +12,5 @@ begin end;
  
 procedure TMinhaClasse.setMinhaVar(value : String);
 begin end;
+
+1
