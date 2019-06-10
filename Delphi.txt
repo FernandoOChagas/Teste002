@@ -1,0 +1,14 @@
+Classe em Delphi.
+
+TMinhaClasse = class
+  private MinhaVar : String;
+  public function getMinhaVar : String;
+  public procedure setMinhaVar : String;
+end;
+ 
+implementation
+function TMinhaClasse.getMinhaVar : String;
+begin end;
+ 
+procedure TMinhaClasse.setMinhaVar(value : String);
+begin end;
