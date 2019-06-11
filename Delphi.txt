@@ -13,4 +13,31 @@ begin end;
 procedure TMinhaClasse.setMinhaVar(value : String);
 begin end;
 
-1,2,3,4,5
+=======================================================
+
+type
+    ICalculadora = Interface
+       function getResult : double;
+       procedure setResult ( value : double );
+       procedure calculate ( x, y : double );
+       property result : double read getResult write setResult;
+    end;
+
+===
+TSoma = class ( TInterfacedObject, ICalculadora )
+private
+    fResult : double;
+protected
+    function getResult : double;
+    procedure setResult ( value : double );
+    procedure calculate ( x, y : double );
+end;
+.
+TDivisao = class ( TInterfacedObject, ICalculadora )
+private
+    fResult : double;
+protected
+    function getResult : double;
+    procedure setResult ( value : double );
+    procedure calculate ( x, y : double );
+end;
