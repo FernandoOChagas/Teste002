@@ -41,3 +41,4 @@ protected
     procedure setResult ( value : double );
     procedure calculate ( x, y : double );
 end;
+.
