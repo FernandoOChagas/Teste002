@@ -41,4 +41,36 @@ protected
     procedure setResult ( value : double );
     procedure calculate ( x, y : double );
 end;
-.
+
+========================================================
+
+Uma opção para criar um novo DataBase é:
+
+27
+procedure CreateDataBase(const ADataBase: String);
+var
+  DataBase : TIBDatabase;
+begin
+ 
+  DataBase :=  TIBDatabase.Create( nil );
+  try
+    try
+      with DataBase do
+        begin
+          DatabaseName := ADataSource;
+          SQLDialect   := 3;
+          Params.Clear;
+          Params.Add(´USER ´´SYSDBA´´´);
+          Params.Add(´PASSWORD ´´masterkey´´´);
+          Params.Add(´PAGE_SIZE 16384´);
+          Params.Add(´DEFAULT CHARACTER SET ISO8859_1´);
+          CreateDatabase;
+        end; // WITH CriaBanco DO
+    finally
+      FreeAndNil(DataBase);
+    end;
+  except
+      raise Exception.Create(´ERROR: CreateDataBase´);
+  end; 
+ 
+end;
