@@ -73,3 +73,66 @@ begin
   end; 
  
 end;
+========================================================
+Function NomeFunção(Parâmetro1:Tipo;Parâmetro2:Tipo): Tipo de Retorno;
+Var
+  {declaração de variáveis se necessário}
+Begin
+{Instruções}
+//Para retornar o valor desejado podemos usar a palavra reservada Result.
+Result := Valor de Retorno;
+ 
+//ou o nome da função.
+NomeFunção := Valor de Retorno;
+End;
+========================================================
+function Soma(a, b: integer): integer;
+begin
+    //Retorna o valor da soma a + b.
+    Result := a + b;
+end;
+========================================================
+procedure VerificaParImpar(a: integer);
+begin
+    if a mod 2 = 0 then
+        ShowMessage('Número par!')
+    else
+        ShowMessage('Número Ímpar!');
+end; 
+========================================================
+procedure TForm1.btn1Click(Sender: TObject);
+var
+  a, b: Integer;
+begin
+    //Inicia "a" com valor 1
+    a := 1;
+    //Variável "b" recebe o valor de retorno da função SomaValor passando a vairável "a" como parâmetro.
+    b := SomaValor(a);
+    //Emite mensagem com os valores
+    ShowMessage('Valor de (a) antes chamada da função: ' + IntToStr(a) + #13 +
+                'Valor de (b) após chamada da função: ' + IntToStr(b)  + #13 +
+                'Valor de (a) após chamada da função: ' + IntToStr(a));
+end;
+ 
+function TForm1.SomaValor(x: integer): Integer;
+begin
+     //Adiciona 1000 ao valor de a
+     x := x + 1000;
+     //Retorna o valor de a
+     Result := x;
+end;
+=========================================================
+procedure TForm1.btn4Click(Sender: TObject); //Procedure principal
+  //Declaração interna da function
+  function Somar(a, b: integer): Integer;
+  begin
+      Result := a + b;
+  end;
+ 
+var
+   resultado: Integer;
+begin
+    //Chamando function interna
+    resultado := Somar(10, 20);
+    ShowMessage('Valor da soma: ' + IntToStr(resultado)); (= 30)
+end;
