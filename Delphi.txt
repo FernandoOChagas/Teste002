@@ -46,7 +46,6 @@ end;
 
 Uma opção para criar um novo DataBase é:
 
-27
 procedure CreateDataBase(const ADataBase: String);
 var
   DataBase : TIBDatabase;
