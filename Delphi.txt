@@ -136,3 +136,8 @@ begin
     resultado := Somar(10, 20);
     ShowMessage('Valor da soma: ' + IntToStr(resultado)); (= 30)
 end;
+==========================================================
+function VlPrestacao(C : Real; J : Real; N : Real) : Real;
+begin
+Result := C*((J/100)/(1-( Power(1/(1+(J/100)),N) )));
+end;
