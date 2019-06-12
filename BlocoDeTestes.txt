@@ -1,0 +1,11 @@
+function somar(a,b : integer):integer;
+ begin 
+     resut := a + B;
+ end;
+  
+ var resultado : integer;
+ 
+ begin
+     resultado := soma(10,40);
+     Edit.Text := inttostr('Total: '+resultado);
+ end;
