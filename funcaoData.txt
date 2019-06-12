@@ -1,0 +1,84 @@
+FUNÇÃO DATA NO DELPHI
+
+
+ function TForm1.QtdAnosEntreDatas(DataIni, 
+DataFim: TDateTime;bDesconsiderarDias:Boolean=False): Single;
+var
+ QntAnos : Single;
+ DataMaior : TDateTime;
+ DataMenor : TDateTime;
+ Fator : integer;
+ Fracao : single;
+begin
+ QntAnos := 0;
+ if DataFim > DataIni then begin
+ DataMenor := DataIni;
+ DataMaior := DataFim;
+ end
+ else begin
+ DataMenor := DataFim;
+ DataMaior := DataIni;
+ end;
+  // Utiliza as datas no mesno dia = 1º
+ if bDesconsiderarDias then begin
+ DataMenor := StrToDate('01/'+FormatDateTime('mm/yyyy',DataMenor));
+ DataMaior := StrToDate('01/'+FormatDateTime('mm/yyyy',DataMaior));
+ end;
+  while DataMaior > DataMenor do begin
+ QntAnos := QntAnos + 1;
+ DataMenor := IncMonth(DataMenor,12);
+ end;
+  if DataMaior < DataMenor then begin
+ DataMenor := IncMonth(DataMenor,-12);
+ QntAnos := QntAnos - 1;
+ end;
+  QntAnos := QntAnos + (DataMaior - DataMenor) / 365;
+ Result := QntAnos;
+end;
+ function TForm1.MesExtenso(dData:TDateTime):String;
+var
+ mes, ano : integer;
+ begin
+ mes := MonthOf(dData);
+ ano := YearOf(dData);
+ case mes of
+ 1: Result := 'Janeiro/' + IntToStr(ano);
+ 2: Result := 'Fevereiro/' + IntToStr(ano);
+ 3: Result := 'Março/' + IntToStr(ano);
+ 4: Result := 'Abril/' + IntToStr(ano);
+ 5: Result := 'Maio/' + IntToStr(ano);
+ 6: Result := 'Junho/' + IntToStr(ano);
+ 7: Result := 'Julho/' + IntToStr(ano);
+ 8: Result := 'Agosto/' + IntToStr(ano);
+ 9: Result := 'Setembro/' + IntToStr(ano);
+ 10:Result := 'Outubro/' + IntToStr(ano);
+ 11:Result := 'Novembro/' + IntToStr(ano);
+ 12:Result := 'Dezembro/' + IntToStr(ano);
+ end;
+ 
+ function TForm1.ValorIndiceAuxiliar : Double;
+var
+ r1,r2,r3,r4,r5,r6,Resultado: String;
+ PosDecimal: Integer;
+begin
+ if RandSeed = 0 then Randomize;
+ repeat
+ repeat
+ r1 := IntToStr(Random(999));
+ r2 := IntToStr(Random(999));
+ r3 := IntToStr(Random(999));
+ r4 := IntToStr(Random(999));
+ r5 := IntToStr(Random(999));
+ r6 := IntToStr(Random(999));
+ Resultado := (r1+r2+r3+r4+r5+r6);
+ Resultado := (copy(Resultado,0,15));
+ until ((length(Resultado) = 15) and (StrToFloat(copy(Resultado,15,1)) > 0));
+ repeat
+ PosDecimal := Random(Length(Resultado));
+ until ((PosDecimal > 1) and (PosDecimal <= 14));
+ insert(',',Resultado,PosDecimal);
+ until ((length(Resultado) = 16) and
+ (StrToFloat(copy(Resultado,16,1)) > 0) and
+ (pos(',',Resultado) > 0));
+ result := StrToFloat(Resultado);
+end;
