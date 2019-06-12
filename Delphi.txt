@@ -141,3 +141,44 @@ function VlPrestacao(C : Real; J : Real; N : Real) : Real;
 begin
 Result := C*((J/100)/(1-( Power(1/(1+(J/100)),N) )));
 end;
+==========================================================
+Calcular idade
+
+function ObterIdade(DataNasc: TDateTime; 
+                    DataAtual: TDateTime): integer; 
+var 
+  DiaNasc: word; 
+  MesNasc: word; 
+  AnoNasc: word; 
+  DiaAtual: word; 
+  MesAtual: word; 
+  AnoAtual: word; 
+begin 
+if DataAtual > DataNasc then 
+    begin 
+    DecodeDate(DataNasc, AnoNasc, MesNasc, DiaNasc); 
+    DecodeDate(DataAtual, AnoAtual, MesAtual, DiaAtual); 
+    if (MesAtual > MesNasc)  or 
+       ((MesAtual = MesNasc) and 
+        (DiaAtual >= DiaNasc)) then 
+        Result := AnoAtual - AnoNasc 
+    else 
+        Result := AnoAtual - AnoNasc - 1; 
+    end 
+else 
+    Result := 0; 
+end; 
+==========================================================
+Exemplo de try no Delphi
+
+Function Tfrmcontatos.DataIdade(DataNascimento : String) : Integer; 
+begin 
+  try 
+    strtodate(datanascimento); //-- Verifica se a data é valida 
+  except 
+    messagedlg('Data de nascimento inválida!', MTERROR, [MBOK], 0); 
+    abort; 
+  end; 
+  result := Trunc((Date - Strtodate(DataNascimento))/365.25); 
+end;
+===========================================================
