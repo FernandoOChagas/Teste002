@@ -182,3 +182,27 @@ begin
   result := Trunc((Date - Strtodate(DataNascimento))/365.25); 
 end;
 ===========================================================
+Exemplo cálculo de juros
+
+function TForm1.Montante(Capital, Taxa, Tempo: Double): Double;
+begin
+  Montante:= Capital * (1 + (Taxa /100) * Tempo);
+end;
+Invocando a função ...
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  C, I, N: Double;
+  Vcto, Pgto: TDate;
+begin
+  Vcto:= StrToDate(txtVcto.Text);
+  Pgto:= StrToDate(txtPgto.Text);
+  N:= Trunc(Pgto - Vcto) / 30;
+  txtTempo.Text:= FloatToStr(N);
+
+  C:= StrToFloat(txtCapital.Text);
+  I:= StrToFloat(txtTaxa.Text);
+
+
+  txtMontante.Text:= FloatToStr(Montante(C, I, N));
+end;
