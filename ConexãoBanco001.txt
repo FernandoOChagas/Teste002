@@ -1,0 +1,10 @@
+no OnCreate do form 
+
+try
+    ADOConnection1.Connected := false;
+    ADOConnection1.ConnectionString := 'Adicione aqui a string gerada anteriormente';
+    ADOConnection1.Connected := true;
+  except
+    MessageDlg('Erro ao conectar com banco de dados!', mtError, [mbOK], 0);
+    Application.Terminate;
+  end;

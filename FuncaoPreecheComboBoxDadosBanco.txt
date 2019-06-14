@@ -1,0 +1,37 @@
+class function ListaCliente: TStrings; 
+begin 
+  Result := TStringList.Create; 
+  Result.Clear; 
+  Result.BeginUpdate; 
+  with DtMdlConnectTable.TbCliente do 
+    begin 
+      First; 
+      while not Eof do 
+        begin 
+          Result.Add(FieldByName('CLIENTE').AsString); 
+          Next; 
+        end; 
+    end; 
+  Result.EndUpdate; 
+end;
+
+NO combo box
+ComboBox.Items := ListaCliente;
+==========================================================
+Outro exemplo 
+Vou tentar passar de uma maneira mais simples... 
+
+function ListaCampo: TStrings; 
+begin 
+Result := TStringList.Create; 
+DataSet.First; 
+while not (DataSet.Eof) do 
+begin 
+Result.Add(DataSet.FieldByName.'CAMPO_A_SER_LISTAD').AsString); 
+DataSet.Next; 
+end; 
+end; 
+
+{A função simplesmente passa para uma stringlist todos os valores do registro do dataset em questão.. Basta agora renomear o DataSet com o nome do seu DataSet, e o nome do campo que vc deseja extrair os dados... E depois atribuir para o combobox.items a função.. 
+Ex.: ComboBox1.Items := ListaCampo; 
+}
