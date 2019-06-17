@@ -1,4 +1,4 @@
-no OnCreate do form 
+No OnCreate do form 
 
 try
     ADOConnection1.Connected := false;
