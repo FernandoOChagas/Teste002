@@ -1,0 +1,66 @@
+Criar tabela:
+CREATE TABLE TBEXEMPLO
+(ID VARCHAR(4) NOT NULL,
+NOME VARCHAR(40) NOT NULL,
+TELEFONE VARCHAR(10) NOT NULL,
+VALOR DECIMAL(6,2) NOT NULL); 
+==============================================
+Deletar tabela:
+DROP TABLE TBEXEMPLO; 
+==============================================
+Alterando uma tabela adicionando uma nova coluna:
+ALTER TABLE TBEXEMPLO ADD COLUMN (FAX VARCHAR(10) NOT NULL); 
+==============================================
+Alterando uma tabela modificando uma coluna:
+ALTER TABLE TBEXEMPLO MODIFY COLUMN (TELEFONE VARCHAR(12)); 
+==============================================
+Apagando os dados de uma tabela retornando-a ao estado de origem:
+TRUNCATE TABLE TBEXEMPLO;
+==============================================
+Inserindo dados:
+INSERT INTO TBEXEMPLO VALUES ('2006', 'Rodrigo', '4466',10.95)
+==============================================
+Alterando dados:
+UPDATE TBEXEMPLO SET VALOR = 120 WHERE ID = '2006';
+==============================================
+Deletando dados:
+DELETE FROM TBEXEMPLO WHERE ID = '2006';
+==============================================
+Para a consulta de dados:
+
+
+SELECT coluna1, coluna2, ...
+FROM tabela1, tabela2, ...
+[ WHERE coluna1 = 'valor1'
+AND coluna2 = 'valor2'
+OR (coluna1 = 'valor3'
+AND coluna2 = 'valor4')]
+[GROUP BY coluna1, coluna2, ...]
+[HAVING function = 'valor']
+[ORDER BY coluna1, coluna2, ...];
+
+Exemplos:
+
+O comando abaixo faz uma contagem das linhas da tabela: 
+SELECT COUNT(*) FROM TBEXEMPLO;
+
+O comando abaixo faz uma seleção das linhas da tabela, trazendo a cidade onde a média do valor é maior que 100:
+
+
+SELECT CIDADE, AVG(VALOR) FROM TBEXEMPLO
+GROUP BY CIDADE
+HAVING AVG(VALOR) > 100;
+
+O comando abaixo faz uma seleção com junção das linhas das tabelas Pedido e Item, onde o numero do pedido é Igual a 10:
+
+SELECT P.NROPEDIDO, I.ITEM
+FROM PEDIDO P, ITENS I
+WHERE P.NROPEDIDO = I.NROPEDIDO AND P.NROPEDIDO = 10 ;
+
+O comando abaixo faz uma seleção das linhas da tabela, trazendo as colunas ID, NOME e VALOR, onde a média do valor é maior que a média de todas as linhas da tabela:
+
+
+SELECT ID, NOME, VALOR FROM TBEXEMPLO
+WHERE VALOR > (SELECT AVG(VALOR) FROM TBEXEMPLO);
+
+ 
