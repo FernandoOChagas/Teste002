@@ -1,4 +1,4 @@
-Classe em Delphi.
+sClasse em Delphi.
 
 TMinhaClasse = class
   private MinhaVar : String;
